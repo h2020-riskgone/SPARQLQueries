@@ -1,0 +1,5 @@
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+select distinct ?chem where { 
+    ?s a obo:CHEBI_59999 ; rdfs:label ?chem.
+}

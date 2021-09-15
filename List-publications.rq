@@ -1,0 +1,13 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+select distinct ?DOI ?sourcetitle ?journal ?year (GROUP_CONCAT(?author;SEPARATOR=", ") AS ?authors) where { 
+    ?source a wd:Q13442814 ; 
+    dcterms:title ?sourcetitle ; 
+    owl:sameAs ?DOI ; 
+    wdt:1433 ?journal ; 
+    wdt:P2093 ?author ; 
+    wdt:P577 ?year.
+}

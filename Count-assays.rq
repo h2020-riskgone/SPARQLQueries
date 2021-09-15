@@ -1,0 +1,5 @@
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+select (count (distinct ?assay as ?nassay)) where { 
+    ?s a bao:BAO_0000015 ; rdfs:label ?assay.
+}

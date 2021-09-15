@@ -1,0 +1,19 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+select distinct ?DOI ?sourcetitle ?ID ?materialname ?materialtype where { 
+    ?source a wd:Q13442814 ; 
+    dcterms:title ?sourcetitle ; 
+    owl:sameAs ?DOI ; 
+    wdt:1433 ?journal ; 
+    wdt:P2093 ?author ; 
+    wdt:P577 ?year.
+    ?s a obo:CHEBI_59999; 
+    dcterms:identifier ?ID ; 
+    rdfs:label ?materialname ; 
+    dcterms:type ?materialtype ; 
+    dcterms:source ?source.
+}
