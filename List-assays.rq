@@ -1,4 +1,4 @@
-PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX bao: <http://www.bioassayontology.org/bao#>
 
 select distinct ?assay where { 
     ?s a bao:BAO_0000015 ; rdfs:label ?assay.
