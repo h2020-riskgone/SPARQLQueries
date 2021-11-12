@@ -1,0 +1,31 @@
+PREFIX nsvoc: <https://ammar257ammar.github.com/RDFied-datasets/nanosafery_vocabulary:>
+PREFIX bao: <http://www.bioassayontology.org/bao#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX sio: <http://semanticscience.org/resource/>
+PREFIX enm: <http://purl.enanomapper.net/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX wd: <http://www.wikidata.org/prop/direct/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+select distinct   ?mlabel ?doi ?measurement ?medium ?value_range ?value ?unit  where {
+  ?s rdfs:label ?mlabel ; 
+     obo:BFO_0000056 ?mg .
+  ?s dcterms:source ?source .
+  ?source owl:sameAs ?doi .
+  #?source wd:P2093 ?author .
+  #?source wd:1433 ?journal .
+  #?source wd:P577 ?year . 
+  ?mg obo:OBI_0000299 ?o .
+  ?o a bao:BAO_0000179 ;
+       rdfs:label ?measurement ;
+       #rdfs:label "zeta potential"@en
+       rdfs:label "hydrodynamic diameter"@en
+       .
+  optional{?o obo:STATO_0000035 ?value_range .}
+  optional{?o sio:has-value ?value. }
+  optional{?o sio:has-unit ?unit .}
+  optional{?o enm:has-condition ?g .}
+  optional{?g rdfs:label ?medlabel
+              ; sio:has-value ?medium .}
+
+} ORDER BY ?mlabel, ?doi
