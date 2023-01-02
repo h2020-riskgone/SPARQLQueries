@@ -1,0 +1,22 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?DOI ?sourcetitle (GROUP_CONCAT(DISTINCT ?f; separator=',') AS ?names) WHERE {
+     ?s a obo:CHEBI_59999 ;
+     dcterms:type ?t ;
+     dcterms:identifier ?ID ;
+     rdfs:label ?f ;
+     dcterms:source ?source .
+?t rdfs:subClassOf* ?parent .
+?parent rdfs:label ?parentLabel .
+FILTER regex(?parentLabel, "^carbon nanotube$", "i")
+?source a wd:Q13442814 ;
+     dcterms:title ?sourcetitle ;
+     owl:sameAs ?DOI ;
+     wdt:1433 ?journal ;
+     wdt:P2093 ?author ;
+     wdt:P577 ?year .
+}
