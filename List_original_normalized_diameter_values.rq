@@ -1,0 +1,16 @@
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bao: <http://www.bioassayontology.org/bao#>
+PREFIX sio: <http://semanticscience.org/resource/>
+
+SELECT ?originalSize ?originalUnit ?normalizedSize ?normalizedUnit WHERE { 
+    VALUES(?p){(sio:has-value) (obo:STATO_0000035)}
+    ?normalizedSizeEp a bao:BAO_0000179;
+       sio:has-value ?normalizedSize;
+       sio:has-unit ?normalizedUnit;
+       rdfs:label "normalized diameter"@en;
+       bao:BAO_0095000 ?originalSizeEp.
+    ?originalSizeEp a bao:BAO_0000179;
+        ?p ?originalSize;
+    sio:has-unit ?originalUnit.
+}
