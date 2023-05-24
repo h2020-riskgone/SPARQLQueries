@@ -1,0 +1,12 @@
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bao: <http://www.bioassayontology.org/bao#>
+
+SELECT DISTINCT ?measurement ?measurement2 WHERE {
+?s obo:BFO_0000056 ?mg .
+?mg bao:BAO_0000208 ?originalEp .
+?originalEp a bao:BAO_0000179 ;
+     rdfs:label ?measurement .
+?normalizedEp bao:BAO_0095000 ?originalEp .
+?normalizedEp rdfs:label ?measurement2 .
+}
