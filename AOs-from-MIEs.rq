@@ -9,6 +9,7 @@ SELECT DISTINCT ?materialname ?ERM ?ke ?mie ?mietitle ?aop ?aotitle WHERE {
    	dcterms:identifier ?ERM ;
    	dcterms:title ?materialname ;
    	sio:SIO_000001 ?ke .
+  FILTER (!regex(?materialname, "microparticle|macroparticle", "i"))
   SERVICE <https://aopwiki.rdf.bigcat-bioinformatics.org/sparql> {
 	?aop aopo:has_key_event ?ke ;
      	aopo:has_molecular_initiating_event ?mie ;
